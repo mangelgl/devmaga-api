@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const morgan = require('morgan');
 
 // Load env vars
 dotenv.config({ path: './.env' });
@@ -11,6 +12,13 @@ const bootcamps = require('./routes/bootcamps');
 
 const app = express();
 
+if (NODE_ENV === 'development') {
+	app.use(morgan('dev'));
+}
+
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
 
-app.listen(PORT, console.log(`Server running on ${NODE_ENV} mode on port ${PORT}`));
+app.listen(
+	PORT,
+	console.log(`Server running on ${NODE_ENV} mode on port ${PORT}`)
+);
