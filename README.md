@@ -8,6 +8,7 @@
 6. Creating first Model
 7. Create Bootcamp - POST
 8. Fetching Bootcamps - GET
+9. Updating & Deleting Bootcamps - PUT & DELETE
 
 # NPM Packages
 

@@ -10,7 +10,9 @@ const getBootcamps = async (req, res, next) => {
 	try {
 		const bootcamps = await Bootcamp.find();
 
-		res.status(200).json(bootcamps);
+		res
+			.status(200)
+			.json({ success: true, count: bootcamps.length, data: bootcamps });
 	} catch (error) {
 		res.status(400).json({
 			sucess: false,
@@ -65,8 +67,21 @@ const createBootcamp = async (req, res, next) => {
  * @route PUT /api/v1/bootcamps/:id
  * @access public
  */
-const updateBootcamp = (req, res, next) => {
-	res.status(200).json({ data: `Update bootcamp ${req.params.id}` });
+const updateBootcamp = async (req, res, next) => {
+	try {
+		const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
+			new: true,
+			runValidators: true,
+		});
+
+		if (!bootcamp) {
+			throw new Error(`An error ocurred during the update process`);
+		}
+
+		res.status(200).json({ sucess: true, data: bootcamp });
+	} catch (error) {
+		res.status(400).json({ sucess: false });
+	}
 };
 
 /**
@@ -74,8 +89,18 @@ const updateBootcamp = (req, res, next) => {
  * @route DELETE /api/v1/bootcamps/:id
  * @access public
  */
-const deleteBootcamp = (req, res, next) => {
-	res.status(200).json({ data: `Delete bootcamp ${req.params.id}` });
+const deleteBootcamp = async (req, res, next) => {
+	try {
+		const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
+
+		if (!bootcamp) {
+			throw new Error(`An error ocurred during the delete process`);
+		}
+
+		res.status(200).json({ sucess: true });
+	} catch (error) {
+		res.status(400).json({ sucess: false });
+	}
 };
 
 module.exports = {

@@ -15,6 +15,7 @@ connectDatabase();
 
 const app = express();
 
+// * Middlewares
 // Log access request to the API
 if (NODE_ENV === 'development') {
 	app.use(morgan('dev'));
@@ -22,6 +23,8 @@ if (NODE_ENV === 'development') {
 
 // Parse the body
 app.use(express.json());
+
+// * End Middlewares
 
 // Load routes
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
