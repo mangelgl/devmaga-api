@@ -1,3 +1,4 @@
+const e = require('express');
 const Bootcamp = require('../models/Bootcamp');
 
 /**
@@ -5,8 +6,16 @@ const Bootcamp = require('../models/Bootcamp');
  * @route GET /api/v1/bootcamps
  * @access public
  */
-const getBootcamps = (req, res, next) => {
-	res.status(200).json({ data: 'Show all bootcamps' });
+const getBootcamps = async (req, res, next) => {
+	try {
+		const bootcamps = await Bootcamp.find();
+
+		res.status(200).json(bootcamps);
+	} catch (error) {
+		res.status(400).json({
+			sucess: false,
+		});
+	}
 };
 
 /**
@@ -14,8 +23,21 @@ const getBootcamps = (req, res, next) => {
  * @route GET /api/v1/bootcamps/:id
  * @access public
  */
-const getBootcamp = (req, res, next) => {
-	res.status(200).json({ data: `Show bootcamp ${req.params.id}` });
+const getBootcamp = async (req, res, next) => {
+	try {
+		const bootcamp = await Bootcamp.findById(req.params.id);
+
+		if (!bootcamp) {
+			throw new Error(`No bootcamp with the id of ${req.params.id}`);
+		}
+
+		res.status(200).json(bootcamp);
+	} catch (error) {
+		res.status(400).json({
+			sucess: false,
+			error: error.message,
+		});
+	}
 };
 
 /**
@@ -34,7 +56,6 @@ const createBootcamp = async (req, res, next) => {
 	} catch (error) {
 		res.status(400).json({
 			sucess: false,
-			error: error.message,
 		});
 	}
 };

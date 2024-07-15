@@ -7,6 +7,7 @@
 5. Connecting to Mongo Atlas Database & Paintint Colors on console logs
 6. Creating first Model
 7. Create Bootcamp - POST
+8. Fetching Bootcamps - GET
 
 # NPM Packages
 
