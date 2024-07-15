@@ -99,11 +99,6 @@ const BootcampSchema = new mongoose.Schema(
 			type: Date,
 			default: Date.now,
 		},
-		user: {
-			type: mongoose.Schema.ObjectId,
-			ref: 'User',
-			required: true,
-		},
 	},
 	{
 		toJSON: { virtuals: true },
@@ -111,4 +106,4 @@ const BootcampSchema = new mongoose.Schema(
 	}
 );
 
-module.exports = mongoose.model('Bootcam', BootcampSchema);
+module.exports = mongoose.model('Bootcamp', BootcampSchema);
