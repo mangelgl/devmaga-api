@@ -9,6 +9,7 @@
 7. Create Bootcamp - POST
 8. Fetching Bootcamps - GET
 9. Updating & Deleting Bootcamps - PUT & DELETE
+10. Error handling
 
 # NPM Packages
 

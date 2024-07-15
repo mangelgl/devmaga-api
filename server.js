@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const connectDatabase = require('./config/db');
 
+const errorHandler = require('./middleware/errorHandler');
 const bootcamps = require('./routes/bootcamps');
 
 // Load env vars
@@ -28,6 +29,7 @@ app.use(express.json());
 
 // Load routes
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
+app.use(errorHandler);
 
 const server = app.listen(
 	PORT,

@@ -1,5 +1,5 @@
-const e = require('express');
 const Bootcamp = require('../models/Bootcamp');
+const ErrorResponse = require('../utils/errorResponse');
 
 /**
  * @desc Get all bootcamps
@@ -35,10 +35,7 @@ const getBootcamp = async (req, res, next) => {
 
 		res.status(200).json(bootcamp);
 	} catch (error) {
-		res.status(400).json({
-			sucess: false,
-			error: error.message,
-		});
+		next(new ErrorResponse(404, `No bootcamp found with id ${req.params.id}`));
 	}
 };
 
@@ -56,9 +53,7 @@ const createBootcamp = async (req, res, next) => {
 			data: bootcamp,
 		});
 	} catch (error) {
-		res.status(400).json({
-			sucess: false,
-		});
+		next(new ErrorResponse(400, error));
 	}
 };
 
@@ -80,7 +75,7 @@ const updateBootcamp = async (req, res, next) => {
 
 		res.status(200).json({ sucess: true, data: bootcamp });
 	} catch (error) {
-		res.status(400).json({ sucess: false });
+		next(new ErrorResponse(404, `An error ocurred during the update process`));
 	}
 };
 
@@ -94,12 +89,12 @@ const deleteBootcamp = async (req, res, next) => {
 		const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
 
 		if (!bootcamp) {
-			throw new Error(`An error ocurred during the delete process`);
+			throw new Error(`No bootcamp found with id ${req.params.id}`);
 		}
 
 		res.status(200).json({ sucess: true });
 	} catch (error) {
-		res.status(400).json({ sucess: false });
+		next(new ErrorResponse(404, `No bootcamp found with id ${req.params.id}`));
 	}
 };
 
