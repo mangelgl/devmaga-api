@@ -46,6 +46,7 @@ You can use the flag `-d` too.
 12. Slugify the name for url for better SEO
 13. GeoJSON
 14. Database Seeders
+15. Get Bootcamps By Radius - GET
 
 # NPM Packages
 
