@@ -8,7 +8,15 @@ const Bootcamp = require('../models/Bootcamp');
  * @access public
  */
 const getBootcamps = asyncHandler(async (req, res, next) => {
-	const bootcamps = await Bootcamp.find();
+	let queryStr = JSON.stringify(req.query);
+	queryStr = queryStr.replace(
+		/\b(gt|gte|lt|lte|in)\b/g,
+		(match) => `$${match}`
+	);
+
+	const bootcampQuery = Bootcamp.find(JSON.parse(queryStr));
+
+	const bootcamps = await bootcampQuery;
 
 	res
 		.status(200)
