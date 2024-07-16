@@ -11,9 +11,14 @@
 9. Updating & Deleting Bootcamps - PUT & DELETE
 10. Error handling
 11. Async/Await Middleware
+12. Slugify the name for url for better SEO
 
 # NPM Packages
 
 - express - https://www.npmjs.com/package/express
 - dotenv - https://www.npmjs.com/package/dotenv
 - morgan - https://www.npmjs.com/package/morgan
+
+# Information Links
+
+- Async/Await Middlewares in Express - https://www.acuriousanimal.com/blog/20180315/express-async-middleware
