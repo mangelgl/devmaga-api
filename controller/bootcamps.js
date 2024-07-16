@@ -14,9 +14,7 @@ const getBootcamps = async (req, res, next) => {
 			.status(200)
 			.json({ success: true, count: bootcamps.length, data: bootcamps });
 	} catch (error) {
-		res.status(400).json({
-			sucess: false,
-		});
+		next(error);
 	}
 };
 
@@ -35,7 +33,7 @@ const getBootcamp = async (req, res, next) => {
 
 		res.status(200).json(bootcamp);
 	} catch (error) {
-		next(new ErrorResponse(404, `No bootcamp found with id ${req.params.id}`));
+		next(error);
 	}
 };
 
@@ -53,7 +51,7 @@ const createBootcamp = async (req, res, next) => {
 			data: bootcamp,
 		});
 	} catch (error) {
-		next(new ErrorResponse(400, error));
+		next(error);
 	}
 };
 
@@ -75,7 +73,7 @@ const updateBootcamp = async (req, res, next) => {
 
 		res.status(200).json({ sucess: true, data: bootcamp });
 	} catch (error) {
-		next(new ErrorResponse(404, `An error ocurred during the update process`));
+		next(error);
 	}
 };
 
@@ -94,7 +92,7 @@ const deleteBootcamp = async (req, res, next) => {
 
 		res.status(200).json({ sucess: true });
 	} catch (error) {
-		next(new ErrorResponse(404, `No bootcamp found with id ${req.params.id}`));
+		next(error);
 	}
 };
 
