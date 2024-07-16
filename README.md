@@ -1,3 +1,35 @@
+# Install Dependencies
+
+```
+npm i
+```
+
+# Run the Application
+
+Once dependencies have installed, run the following command:
+
+```
+npm run dev
+```
+
+# Seeders
+
+To fill the database with data, run the following command:
+
+```
+node seeder --import
+```
+
+You can use the flag `-i` too.
+
+To destroy the data, run the following command:
+
+```
+node seeder --delete
+```
+
+You can use the flag `-d` too.
+
 # Commit Content
 
 1. Initial Express setup
@@ -13,6 +45,7 @@
 11. Async/Await Middleware
 12. Slugify the name for url for better SEO
 13. GeoJSON
+14. Database Seeders
 
 # NPM Packages
 
