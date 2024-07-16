@@ -3,28 +3,81 @@ const geocoder = require('../utils/geocoder');
 const Bootcamp = require('../models/Bootcamp');
 
 /**
- * @desc Get all bootcamps
+ * * @desc Get all bootcamps
  * @route GET /api/v1/bootcamps
  * @access public
  */
 const getBootcamps = asyncHandler(async (req, res, next) => {
-	let queryStr = JSON.stringify(req.query);
+	const reqQuery = { ...req.query };
+	const excludedFields = ['select', 'sort', 'page', 'limit'];
+
+	// Check for excluded fields in our query and removes it
+	excludedFields.forEach((field) => delete reqQuery[field]); // delete operator removes key/value from an object
+
+	// Quantity Filtering
+	// Create query string and format it to match quantity filtering format
+	let queryStr = JSON.stringify(reqQuery);
 	queryStr = queryStr.replace(
 		/\b(gt|gte|lt|lte|in)\b/g,
 		(match) => `$${match}`
 	);
 
-	const bootcampQuery = Bootcamp.find(JSON.parse(queryStr));
+	// * Finding resource in database
+	let bootcampQuery = Bootcamp.find(JSON.parse(queryStr));
 
+	// Select specific fields
+	if (req.query.select) {
+		const fields = req.query.select.split(',').join(' ');
+		bootcampQuery = bootcampQuery.select(fields);
+	}
+
+	// Sort fields
+	if (req.query.sort) {
+		const sortBy = req.query.sort.split(',').join(' ');
+		bootcampQuery = bootcampQuery.sort(sortBy);
+	} else {
+		bootcampQuery = bootcampQuery.sort('-createdAt');
+	}
+
+	// Pagination
+	const page = parseInt(req.query.page, 10) || 1;
+	const limit = parseInt(req.query.limit, 10) || 25;
+	const startIndex = (page - 1) * limit;
+	const endIndex = page * limit;
+	const total = await Bootcamp.countDocuments();
+
+	bootcampQuery = bootcampQuery.skip(startIndex).limit(limit);
+
+	// * Exec the query
 	const bootcamps = await bootcampQuery;
 
-	res
-		.status(200)
-		.json({ success: true, count: bootcamps.length, data: bootcamps });
+	// Pagination object to response
+	const pagination = {};
+
+	if (startIndex > 0) {
+		pagination.previous = {
+			page: page - 1,
+			limit,
+		};
+	}
+
+	if (endIndex < total) {
+		pagination.next = {
+			page: page + 1,
+			limit,
+		};
+	}
+
+	res.status(200).json({
+		success: true,
+		count: bootcamps.length,
+		pagination,
+		data: bootcamps,
+	});
 });
 
 /**
- * @desc Get a single bootcamp
+ * * @desc Get a single bootcamp
  * @route GET /api/v1/bootcamps/:id
  * @access public
  */
@@ -39,13 +92,14 @@ const getBootcamp = asyncHandler(async (req, res, next) => {
 });
 
 /**
- * @desc Get bootcamps within a radius
+ * * @desc Get bootcamps within a radius
  * @route GET /api/v1/bootcamps/radius/:zipcode/:distance/:unit
  * @access public
  */
 const getBootcampsByRadius = asyncHandler(async (req, res, next) => {
 	const { zipcode, distance, unit } = req.params;
 
+	// Init location, latitude and longitude variables
 	const loc = await geocoder.geocode(zipcode);
 	const lat = loc[0].latitude;
 	const lng = loc[0].longitude;
@@ -59,6 +113,7 @@ const getBootcampsByRadius = asyncHandler(async (req, res, next) => {
 		const radius = distance / 6378.1;
 	}
 
+	// Find bootcamps with radius filter (see README.md link section for more information)
 	const bootcamps = await Bootcamp.find({
 		location: {
 			$geoWithin: {
@@ -74,7 +129,7 @@ const getBootcampsByRadius = asyncHandler(async (req, res, next) => {
 });
 
 /**
- * @desc Create a new bootcamp
+ * * @desc Create a new bootcamp
  * @route POST /api/v1/bootcamps
  * @access public
  */
@@ -88,14 +143,14 @@ const createBootcamp = asyncHandler(async (req, res, next) => {
 });
 
 /**
- * @desc Update a single bootcamp
+ * * @desc Update a single bootcamp
  * @route PUT /api/v1/bootcamps/:id
  * @access public
  */
 const updateBootcamp = asyncHandler(async (req, res, next) => {
 	const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
-		new: true,
-		runValidators: true,
+		new: true, // will return document after update was applied.
+		runValidators: true, // will validate the body to check if is ok
 	});
 
 	if (!bootcamp) {
@@ -106,7 +161,7 @@ const updateBootcamp = asyncHandler(async (req, res, next) => {
 });
 
 /**
- * @desc Delete a single bootcamp
+ * * @desc Delete a single bootcamp
  * @route DELETE /api/v1/bootcamps/:id
  * @access public
  */

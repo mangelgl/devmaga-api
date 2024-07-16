@@ -48,6 +48,7 @@ You can use the flag `-d` too.
 14. Database Seeders
 15. Get Bootcamps By Radius - GET
 16. Advanced Filtering
+17. Select, Sort & Pagination
 
 # NPM Packages
 
@@ -62,3 +63,6 @@ You can use the flag `-d` too.
 # Information Links
 
 - Async/Await Middlewares in Express - https://www.acuriousanimal.com/blog/20180315/express-async-middleware
+- Mongoose Radius Filtering - https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/
+- Mongoose Quantity Filtering - https://www.mongodb.com/docs/manual/reference/operator/query/gt/
+- Mongoose Select Fields - https://mongoosejs.com/docs/queries
