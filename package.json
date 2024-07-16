@@ -20,7 +20,7 @@
 		"express": "^4.19.2",
 		"moongose": "^1.0.0",
 		"morgan": "^1.10.0",
-		"semver": "^7.5.1",
+		"node-geocoder": "^4.3.0",
 		"slugify": "^1.6.6"
 	}
 }

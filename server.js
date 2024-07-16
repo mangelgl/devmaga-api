@@ -2,12 +2,15 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const connectDatabase = require('./config/db');
-
 const errorHandler = require('./middleware/errorHandler');
-const bootcamps = require('./routes/bootcamps');
 
 // Load env vars
+// Must be called before any routing load for Mapquest package to work
 dotenv.config({ path: './.env' });
+
+// Routes
+const bootcamps = require('./routes/bootcamps');
+
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
 

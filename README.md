@@ -12,12 +12,17 @@
 10. Error handling
 11. Async/Await Middleware
 12. Slugify the name for url for better SEO
+13. GeoJSON
 
 # NPM Packages
 
 - express - https://www.npmjs.com/package/express
 - dotenv - https://www.npmjs.com/package/dotenv
 - morgan - https://www.npmjs.com/package/morgan
+- mongoose - https://www.npmjs.com/package/mongoose
+- colors - https://www.npmjs.com/package/colors
+- slugify - https://www.npmjs.com/package/slugify
+- node-geocoder - https://www.npmjs.com/package/node-geocoder
 
 # Information Links
 
