@@ -23,20 +23,20 @@ const getBootcamps = asyncHandler(async (req, res, next) => {
 	);
 
 	// * Finding resource in database
-	let bootcampQuery = Bootcamp.find(JSON.parse(queryStr));
+	let query = Bootcamp.find(JSON.parse(queryStr));
 
 	// Select specific fields
 	if (req.query.select) {
 		const fields = req.query.select.split(',').join(' ');
-		bootcampQuery = bootcampQuery.select(fields);
+		query = query.select(fields);
 	}
 
 	// Sort fields
 	if (req.query.sort) {
 		const sortBy = req.query.sort.split(',').join(' ');
-		bootcampQuery = bootcampQuery.sort(sortBy);
+		query = query.sort(sortBy);
 	} else {
-		bootcampQuery = bootcampQuery.sort('-createdAt');
+		query = query.sort('-createdAt');
 	}
 
 	// Pagination
@@ -46,10 +46,10 @@ const getBootcamps = asyncHandler(async (req, res, next) => {
 	const endIndex = page * limit;
 	const total = await Bootcamp.countDocuments();
 
-	bootcampQuery = bootcampQuery.skip(startIndex).limit(limit);
+	query = query.skip(startIndex).limit(limit);
 
 	// * Exec the query
-	const bootcamps = await bootcampQuery;
+	const bootcamps = await query;
 
 	// Pagination object to response
 	const pagination = {};
@@ -83,10 +83,6 @@ const getBootcamps = asyncHandler(async (req, res, next) => {
  */
 const getBootcamp = asyncHandler(async (req, res, next) => {
 	const bootcamp = await Bootcamp.findById(req.params.id);
-
-	if (!bootcamp) {
-		throw new Error(`No bootcamp with the id of ${req.params.id}`);
-	}
 
 	res.status(200).json(bootcamp);
 });
@@ -153,10 +149,6 @@ const updateBootcamp = asyncHandler(async (req, res, next) => {
 		runValidators: true, // will validate the body to check if is ok
 	});
 
-	if (!bootcamp) {
-		throw new Error(`An error ocurred during the update process`);
-	}
-
 	res.status(200).json({ sucess: true, data: bootcamp });
 });
 
@@ -167,10 +159,6 @@ const updateBootcamp = asyncHandler(async (req, res, next) => {
  */
 const deleteBootcamp = asyncHandler(async (req, res, next) => {
 	const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
-
-	if (!bootcamp) {
-		throw new Error(`No bootcamp found with id ${req.params.id}`);
-	}
 
 	res.status(200).json({ sucess: true });
 });

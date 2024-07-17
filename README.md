@@ -50,6 +50,7 @@ You can use the flag `-d` too.
 16. Advanced Filtering
 17. Select, Sort & Pagination
 18. Course Model & Seeder
+19. Course Routes & Controller
 
 # NPM Packages
 

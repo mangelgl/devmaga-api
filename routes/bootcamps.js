@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const {
 	getBootcamps,
 	getBootcamp,
@@ -8,6 +9,12 @@ const {
 	deleteBootcamp,
 	getBootcampsByRadius,
 } = require('../controller/bootcamps');
+
+// Include other resources routes
+const courseRouter = require('./courses');
+
+// Re-route into other resource routers
+router.use('/:bootcampId/courses', courseRouter);
 
 // We're not going to use anymore the '/api/v1/bootcamps' prefix
 router.route('/').get(getBootcamps).post(createBootcamp);

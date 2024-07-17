@@ -10,6 +10,7 @@ dotenv.config({ path: './.env' });
 
 // Routes
 const bootcamps = require('./routes/bootcamps');
+const courses = require('./routes/courses');
 
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
@@ -32,6 +33,7 @@ app.use(express.json());
 
 // Load routes
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
+app.use('/api/v1/courses', courses); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
 app.use(errorHandler);
 
 const server = app.listen(
