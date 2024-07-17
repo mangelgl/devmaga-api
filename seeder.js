@@ -6,12 +6,12 @@ const dotenv = require('dotenv');
 // Load env vars
 dotenv.config({ path: './.env' });
 
-// Load model
+// Load models
 const Bootcamp = require('./models/Bootcamp');
+const Course = require('./models/Course');
 
 // Connect to database
-
-// DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false`
+// 		- DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false`
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URI);
 
@@ -19,11 +19,15 @@ mongoose.connect(process.env.MONGO_URI);
 const bootcamps = JSON.parse(
 	fs.readFileSync(`${__dirname}/_data/bootcamps.json`, 'utf-8')
 );
+const courses = JSON.parse(
+	fs.readFileSync(`${__dirname}/_data/courses.json`, 'utf-8')
+);
 
 // Import into DB
 const importData = async () => {
 	try {
 		await Bootcamp.create(bootcamps);
+		await Course.create(courses);
 		console.log('Bootcamps seeders imported...'.green.inverse);
 		process.exit();
 	} catch (error) {
@@ -35,7 +39,8 @@ const importData = async () => {
 const deleteData = async () => {
 	try {
 		await Bootcamp.deleteMany();
-		console.log('Bootcamps seeders destoyed...'.green.inverse);
+		await Course.deleteMany();
+		console.log('Bootcamps seeders destoyed...'.red.inverse);
 		process.exit();
 	} catch (error) {
 		console.log(error);

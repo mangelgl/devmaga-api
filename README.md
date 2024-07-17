@@ -49,6 +49,7 @@ You can use the flag `-d` too.
 15. Get Bootcamps By Radius - GET
 16. Advanced Filtering
 17. Select, Sort & Pagination
+18. Course Model & Seeder
 
 # NPM Packages
 
