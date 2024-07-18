@@ -102,6 +102,7 @@ const BootcampSchema = new mongoose.Schema(
 			default: Date.now,
 		},
 	},
+	// to create virtual fields
 	{
 		toJSON: { virtuals: true },
 		toObject: { virtuals: true },
@@ -134,6 +135,21 @@ BootcampSchema.pre('save', async function (next) {
 	// Do not save user input address in the DB
 	this.address = undefined;
 	next();
+});
+
+// * Cascade Delete courses
+BootcampSchema.pre('remove', async function (next) {
+	console.log(`Courses from bootcamp ${this._id} are being removed...`);
+	await this.model('Course').deleteMany({ bootcamp: this._id });
+	next();
+});
+
+// *Creates virtual fields
+BootcampSchema.virtual('courses', {
+	ref: 'Course',
+	localField: '_id',
+	foreignField: 'bootcamp',
+	justOne: false,
 });
 
 module.exports = mongoose.model('Bootcamp', BootcampSchema);

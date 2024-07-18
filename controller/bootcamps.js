@@ -23,7 +23,10 @@ const getBootcamps = asyncHandler(async (req, res, next) => {
 	);
 
 	// * Finding resource in database
-	let query = Bootcamp.find(JSON.parse(queryStr));
+	let query = Bootcamp.find(JSON.parse(queryStr)).populate({
+		path: 'courses',
+		select: 'title description weeks',
+	});
 
 	// Select specific fields
 	if (req.query.select) {
@@ -158,7 +161,10 @@ const updateBootcamp = asyncHandler(async (req, res, next) => {
  * @access public
  */
 const deleteBootcamp = asyncHandler(async (req, res, next) => {
-	const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
+	const bootcamp = await Bootcamp.findById(req.params.id);
+
+	// This will fire up the middleware to remove all courses binding to the bootcamp
+	bootcamp.remove();
 
 	res.status(200).json({ sucess: true });
 });

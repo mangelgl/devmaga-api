@@ -51,6 +51,7 @@ You can use the flag `-d` too.
 17. Select, Sort & Pagination
 18. Course Model & Seeder
 19. Course Routes & Controller
+20. Populate, Virtuals & Cascade Delete
 
 # NPM Packages
 

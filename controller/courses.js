@@ -9,7 +9,10 @@ const Course = require('../models/Course');
  */
 const getCourses = asyncHandler(async (req, res, next) => {
 	// * Finding resource in database
-	const query = Course.find();
+	const query = Course.find().populate({
+		path: 'bootcamp',
+		select: 'name description',
+	});
 
 	// * Exec the query
 	const courses = await query;
