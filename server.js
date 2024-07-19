@@ -1,12 +1,17 @@
+const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
-const connectDatabase = require('./config/db');
+const fileupload = require('express-fileupload');
 const errorHandler = require('./middleware/errorHandler');
+const connectDatabase = require('./config/db');
 
 // Load env vars
 // Must be called before any routing load for Mapquest package to work
 dotenv.config({ path: './.env' });
+
+// Connect to database
+connectDatabase();
 
 // Routes
 const bootcamps = require('./routes/bootcamps');
@@ -14,9 +19,6 @@ const courses = require('./routes/courses');
 
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
-
-// Connect to database
-connectDatabase();
 
 const app = express();
 
@@ -28,12 +30,17 @@ if (NODE_ENV === 'development') {
 
 // Parse the body
 app.use(express.json());
+// File upload
+app.use(fileupload());
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // * End Middlewares
 
 // Load routes
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
 app.use('/api/v1/courses', courses); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
+
 app.use(errorHandler);
 
 const server = app.listen(

@@ -1,3 +1,5 @@
+const path = require('path');
+const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const geocoder = require('../utils/geocoder');
 const Bootcamp = require('../models/Bootcamp');
@@ -152,6 +154,12 @@ const updateBootcamp = asyncHandler(async (req, res, next) => {
 		runValidators: true, // will validate the body to check if is ok
 	});
 
+	if (!bootcamp) {
+		return next(
+			new ErrorResponse(404, `No bootcamp found with id ${req.params.id}`)
+		);
+	}
+
 	res.status(200).json({ sucess: true, data: bootcamp });
 });
 
@@ -163,10 +171,74 @@ const updateBootcamp = asyncHandler(async (req, res, next) => {
 const deleteBootcamp = asyncHandler(async (req, res, next) => {
 	const bootcamp = await Bootcamp.findById(req.params.id);
 
+	if (!bootcamp) {
+		return next(
+			new ErrorResponse(404, `No bootcamp found with id ${req.params.id}`)
+		);
+	}
+
 	// This will fire up the middleware to remove all courses binding to the bootcamp
 	bootcamp.remove();
 
 	res.status(200).json({ sucess: true, data: {} });
+});
+
+/**
+ * * @desc Upload photo for bootcamp
+ * @route PUT /api/v1/bootcamps/:id/photo
+ * @access private
+ */
+const bootcampUploadPhoto = asyncHandler(async (req, res, next) => {
+	const bootcamp = await Bootcamp.findById(req.params.id);
+
+	if (!bootcamp) {
+		return next(
+			new ErrorResponse(404, `No bootcamp found with id ${req.params.id}`)
+		);
+	}
+
+	if (!req.files) {
+		return next(new ErrorResponse(400, 'Please upload a file!'));
+	}
+
+	let file = req.files.file;
+
+	// Validate file upload is an image
+	if (!file.mimetype.startsWith('image')) {
+		return next(new ErrorResponse(400, 'Please upload a valid image!'));
+	}
+
+	// Check filesize
+	const maxFileSize = process.env.MAX_FILESIZE_UPLOAD;
+	if (file.size > maxFileSize) {
+		return next(
+			new ErrorResponse(
+				400,
+				`Please upload an image less than ${Math.ceil(
+					maxFileSize / 1024 ** 2
+				)}MB!`
+			)
+		);
+	}
+
+	// Create custom filename
+	file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`;
+
+	file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
+		if (err) {
+			console.error(err);
+			return next(new ErrorResponse(400, 'Problem with file upload'));
+		}
+
+		await Bootcamp.findByIdAndUpdate(req.params.id, {
+			photo: file.name,
+		});
+
+		res.status(200).json({
+			success: true,
+			data: file.name,
+		});
+	});
 });
 
 module.exports = {
@@ -176,4 +248,5 @@ module.exports = {
 	updateBootcamp,
 	deleteBootcamp,
 	getBootcampsByRadius,
+	bootcampUploadPhoto,
 };

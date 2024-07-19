@@ -54,6 +54,7 @@ You can use the flag `-d` too.
 20. Populate, Virtuals & Cascade Delete
 21. Add, Update & Delete Course - POST PUT PATCH
 22. Aggregate - Calculating Average Course Cost
+23. File Uploads
 
 # NPM Packages
 
@@ -64,6 +65,7 @@ You can use the flag `-d` too.
 - colors - https://www.npmjs.com/package/colors
 - slugify - https://www.npmjs.com/package/slugify
 - node-geocoder - https://www.npmjs.com/package/node-geocoder
+- fileupload - https://www.npmjs.com/package/express-fileupload
 
 # Information Links
 
