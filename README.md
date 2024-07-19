@@ -53,6 +53,7 @@ You can use the flag `-d` too.
 19. Course Routes & Controller
 20. Populate, Virtuals & Cascade Delete
 21. Add, Update & Delete Course - POST PUT PATCH
+22. Aggregate - Calculating Average Course Cost
 
 # NPM Packages
 

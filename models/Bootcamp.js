@@ -144,7 +144,7 @@ BootcampSchema.pre('remove', async function (next) {
 	next();
 });
 
-// *Creates virtual fields
+// * Creates virtual fields
 BootcampSchema.virtual('courses', {
 	ref: 'Course',
 	localField: '_id',
