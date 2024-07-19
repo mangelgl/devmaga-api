@@ -52,6 +52,7 @@ You can use the flag `-d` too.
 18. Course Model & Seeder
 19. Course Routes & Controller
 20. Populate, Virtuals & Cascade Delete
+21. Add, Update & Delete Course - POST PUT PATCH
 
 # NPM Packages
 

@@ -166,7 +166,7 @@ const deleteBootcamp = asyncHandler(async (req, res, next) => {
 	// This will fire up the middleware to remove all courses binding to the bootcamp
 	bootcamp.remove();
 
-	res.status(200).json({ sucess: true });
+	res.status(200).json({ sucess: true, data: {} });
 });
 
 module.exports = {
