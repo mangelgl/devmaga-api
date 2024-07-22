@@ -11,6 +11,9 @@ const {
 	bootcampUploadPhoto,
 } = require('../controller/bootcamps');
 
+const Bootcamp = require('../models/Bootcamp');
+const advanceResults = require('../middleware/advanced-results');
+
 // Include other resources routes
 const courseRouter = require('./courses');
 
@@ -18,7 +21,10 @@ const courseRouter = require('./courses');
 router.use('/:bootcampId/courses', courseRouter);
 
 // We're not going to use anymore the '/api/v1/bootcamps' prefix
-router.route('/').get(getBootcamps).post(createBootcamp);
+router
+	.route('/')
+	.get(advanceResults(Bootcamp, 'courses'), getBootcamps)
+	.post(createBootcamp);
 
 router
 	.route('/:id')

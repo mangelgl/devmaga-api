@@ -55,6 +55,7 @@ You can use the flag `-d` too.
 21. Add, Update & Delete Course - POST PUT PATCH
 22. Aggregate - Calculating Average Course Cost
 23. File Uploads
+24. Advanced Results (Select, Pagination, Sorting) in Middleware
 
 # NPM Packages
 
