@@ -16,6 +16,7 @@ connectDatabase();
 // Routes
 const bootcamps = require('./routes/bootcamps');
 const courses = require('./routes/courses');
+const auth = require('./routes/auth');
 
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
@@ -39,7 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Load routes
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
-app.use('/api/v1/courses', courses); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
+app.use('/api/v1/courses', courses);
+app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
 

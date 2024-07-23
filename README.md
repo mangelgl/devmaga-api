@@ -56,6 +56,7 @@ You can use the flag `-d` too.
 22. Aggregate - Calculating Average Course Cost
 23. File Uploads
 24. Advanced Results (Select, Pagination, Sorting) in Middleware
+25. User Model & Register & Encryption Password
 
 # NPM Packages
 
@@ -67,6 +68,7 @@ You can use the flag `-d` too.
 - slugify - https://www.npmjs.com/package/slugify
 - node-geocoder - https://www.npmjs.com/package/node-geocoder
 - fileupload - https://www.npmjs.com/package/express-fileupload
+- bcryptjs - https://www.npmjs.com/package/bcryptjs
 
 # Information Links
 
