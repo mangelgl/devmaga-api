@@ -60,6 +60,7 @@ You can use the flag `-d` too.
 26. JWT
 27. USer Login
 28. Sending JWT Token to Browser Cookies
+29. Protect Routes with Auth Middleware
 
 # NPM Packages
 
