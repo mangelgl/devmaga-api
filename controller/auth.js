@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 /**
  * * @desc Register user
- * @route GET /api/v1/auth
+ * @route POST /api/v1/auth
  * @access public
  */
 const registerUser = asyncHandler(async (req, res, next) => {
@@ -17,7 +17,9 @@ const registerUser = asyncHandler(async (req, res, next) => {
 		role,
 	});
 
-	res.status(200).json({ success: true, data: user });
+	const token = user.getSignedJwtToken();
+
+	res.status(200).json({ success: true, token });
 });
 
 module.exports = {

@@ -57,6 +57,7 @@ You can use the flag `-d` too.
 23. File Uploads
 24. Advanced Results (Select, Pagination, Sorting) in Middleware
 25. User Model & Register & Encryption Password
+26. JWT
 
 # NPM Packages
 
@@ -69,6 +70,7 @@ You can use the flag `-d` too.
 - node-geocoder - https://www.npmjs.com/package/node-geocoder
 - fileupload - https://www.npmjs.com/package/express-fileupload
 - bcryptjs - https://www.npmjs.com/package/bcryptjs
+- jsonwebtoken - https://www.npmjs.com/package/jsonwebtoken
 
 # Information Links
 
@@ -76,3 +78,4 @@ You can use the flag `-d` too.
 - Mongoose Radius Filtering - https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/
 - Mongoose Quantity Filtering - https://www.mongodb.com/docs/manual/reference/operator/query/gt/
 - Mongoose Select Fields - https://mongoosejs.com/docs/queries
+- JSON Web Token Debugger - https://jwt.io
