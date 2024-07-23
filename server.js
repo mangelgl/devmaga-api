@@ -3,48 +3,46 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const fileupload = require('express-fileupload');
+const cookieParser = require('cookie-parser');
+
 const errorHandler = require('./middleware/errorHandler');
 const connectDatabase = require('./config/db');
 
-// Load env vars
-// Must be called before any routing load for Mapquest package to work
+// * Load environment variables
+// Must be called before any routing load for Mapquest (geocoder) package to work
 dotenv.config({ path: './.env' });
-
-// Connect to database
-connectDatabase();
-
-// Routes
-const bootcamps = require('./routes/bootcamps');
-const courses = require('./routes/courses');
-const auth = require('./routes/auth');
 
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
 
+// * Connect to database
+connectDatabase();
+
+// * Load route files
+const bootcamps = require('./routes/bootcamps');
+const courses = require('./routes/courses');
+const auth = require('./routes/auth');
+
 const app = express();
 
 // * Middlewares
-// Log access request to the API
 if (NODE_ENV === 'development') {
-	app.use(morgan('dev'));
+	app.use(morgan('dev')); // Log access requests to the API
 }
 
-// Parse the body
-app.use(express.json());
-// File upload
-app.use(fileupload());
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json()); // to parse the request body to JSON type
+app.use(fileupload()); // to upload files
+app.use(express.static(path.join(__dirname, 'public'))); // to set public folder
+app.use(cookieParser()); // to parse cookies
 
-// * End Middlewares
-
-// Load routes
+// * Mount routes
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file
 app.use('/api/v1/courses', courses);
 app.use('/api/v1/auth', auth);
 
-app.use(errorHandler);
+app.use(errorHandler); // to handle errors and error messages
 
+// *** Start the server
 const server = app.listen(
 	PORT,
 	console.log(`Server running on ${NODE_ENV} mode on port ${PORT}`.yellow.bold)

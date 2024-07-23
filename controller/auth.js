@@ -17,9 +17,7 @@ const register = asyncHandler(async (req, res, next) => {
 		role,
 	});
 
-	const token = user.getSignedJwtToken();
-
-	res.status(200).json({ success: true, token });
+	sendTokenResponse(user, 200, res);
 });
 
 /**
@@ -51,10 +49,33 @@ const login = asyncHandler(async (req, res, next) => {
 		return next(new ErrorResponse(401, 'Invalid credentials'));
 	}
 
+	sendTokenResponse(user, 200, res);
+});
+
+// * Get token from model, create cookie and send response
+const sendTokenResponse = function (user, statusCode, res) {
+	// Create token
 	const token = user.getSignedJwtToken();
 
-	res.status(200).json({ success: true, token });
-});
+	// Cookie options
+	const options = {
+		expires: new Date(
+			Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+		),
+		httpOnly: true, // can not be read from client side scripts
+	};
+
+	// https
+	if (process.env.NODE_ENV === 'production') {
+		options.secure = true;
+	}
+
+	// send response
+	res.status(statusCode).cookie('token', token, options).json({
+		success: true,
+		token,
+	});
+};
 
 module.exports = {
 	register,

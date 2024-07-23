@@ -59,6 +59,7 @@ You can use the flag `-d` too.
 25. User Model & Register & Encryption Password
 26. JWT
 27. USer Login
+28. Sending JWT Token to Browser Cookies
 
 # NPM Packages
 
@@ -72,6 +73,7 @@ You can use the flag `-d` too.
 - fileupload - https://www.npmjs.com/package/express-fileupload
 - bcryptjs - https://www.npmjs.com/package/bcryptjs
 - jsonwebtoken - https://www.npmjs.com/package/jsonwebtoken
+- cookie-parser - https://www.npmjs.com/package/cookie-parser
 
 # Information Links
 
