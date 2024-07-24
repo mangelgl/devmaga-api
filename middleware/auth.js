@@ -32,4 +32,21 @@ const protect = asyncHandler(async (req, res, next) => {
 	}
 });
 
-module.exports = protect;
+const authorize = (...roles) => {
+	return (req, res, next) => {
+		if (!roles.includes(req.user.role)) {
+			return next(
+				new ErrorResponse(
+					401,
+					`User role '${req.user.role}' is unauthorized to access this route`
+				)
+			);
+		}
+		next();
+	};
+};
+
+module.exports = {
+	protect,
+	authorize,
+};
