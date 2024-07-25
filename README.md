@@ -64,6 +64,7 @@ You can use the flag `-d` too.
 30. Role Authorization
 31. Bootcamp & User Relationship
 32. Bootcamp & Courses Ownership
+33. Reset password Feature
 
 # NPM Packages
 
@@ -78,6 +79,7 @@ You can use the flag `-d` too.
 - bcryptjs - https://www.npmjs.com/package/bcryptjs
 - jsonwebtoken - https://www.npmjs.com/package/jsonwebtoken
 - cookie-parser - https://www.npmjs.com/package/cookie-parser
+- nodemailer - https://www.npmjs.com/package/nodemailer
 
 # Information Links
 
@@ -86,3 +88,4 @@ You can use the flag `-d` too.
 - Mongoose Quantity Filtering - https://www.mongodb.com/docs/manual/reference/operator/query/gt/
 - Mongoose Select Fields - https://mongoosejs.com/docs/queries
 - JSON Web Token Debugger - https://jwt.io
+- Fake SMTP Server for Mails - https://mailtrap.io/
