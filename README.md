@@ -62,6 +62,7 @@ You can use the flag `-d` too.
 28. Sending JWT Token to Browser Cookies
 29. Protect Routes with Auth Middleware
 30. Role Authorization
+31. Bootcamp & User Relationship
 
 # NPM Packages
 
