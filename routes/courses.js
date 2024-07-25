@@ -18,7 +18,7 @@ router
 	.route('/')
 	.get(
 		advancedResults(Course, {
-			path: 'bootcamps',
+			path: 'bootcamp',
 			select: 'name description',
 		}),
 		getCourses

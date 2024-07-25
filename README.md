@@ -63,6 +63,7 @@ You can use the flag `-d` too.
 29. Protect Routes with Auth Middleware
 30. Role Authorization
 31. Bootcamp & User Relationship
+32. Bootcamp & Courses Ownership
 
 # NPM Packages
 
