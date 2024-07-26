@@ -2,6 +2,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const colors = require('colors');
 const dotenv = require('dotenv');
+const config = require('./config/index');
 
 // Load env vars
 dotenv.config({ path: './.env' });
@@ -14,7 +15,7 @@ const User = require('./models/User');
 // Connect to database
 // 		- DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false`
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(config.DB.MONGO_URI);
 
 // Read JSON files
 const bootcamps = JSON.parse(

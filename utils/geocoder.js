@@ -1,9 +1,10 @@
 const nodeGeocoder = require('node-geocoder');
+const config = require('../config/index');
 
 const options = {
-	provider: process.env.GEOCODER_PROVIDER,
+	provider: config.GEOCODER.GEOCODER_PROVIDER,
 	httpAdapter: 'https',
-	apiKey: process.env.GEOCODER_API_KEY, // for Mapquest, OpenCage, APlace, Google Premier
+	apiKey: config.GEOCODER.GEOCODER_API_KEY, // for Mapquest, OpenCage, APlace, Google Premier
 	formatter: null, // 'gpx', 'string', ...
 };
 

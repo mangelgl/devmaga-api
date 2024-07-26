@@ -12,7 +12,7 @@ const {
 } = require('../controller/bootcamps');
 
 const Bootcamp = require('../models/Bootcamp');
-const advanceResults = require('../middleware/advanced-results');
+const advanceResults = require('../middleware/advancedResults');
 const { protect, authorize } = require('../middleware/auth');
 
 // Include other resources routes

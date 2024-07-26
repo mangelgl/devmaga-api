@@ -1,19 +1,17 @@
+const dotenv = require('dotenv');
+// * Load environment variables
+// Must be called before any routing load for process.env.XX to work
+dotenv.config({ path: './.env' });
+
 const path = require('path');
 const express = require('express');
-const dotenv = require('dotenv');
 const morgan = require('morgan');
 const fileupload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 
 const errorHandler = require('./middleware/errorHandler');
+const config = require('./config/index');
 const connectDatabase = require('./config/db');
-
-// * Load environment variables
-// Must be called before any routing load for Mapquest (geocoder) package to work
-dotenv.config({ path: './.env' });
-
-const PORT = process.env.PORT || 5000;
-const NODE_ENV = process.env.NODE_ENV;
 
 // * Connect to database
 connectDatabase();
@@ -27,7 +25,7 @@ const users = require('./routes/users');
 const app = express();
 
 // * Middlewares
-if (NODE_ENV === 'development') {
+if (config.NODE_ENV === 'development') {
 	app.use(morgan('dev')); // Log access requests to the API
 }
 
@@ -46,8 +44,11 @@ app.use(errorHandler); // to handle errors and error messages
 
 // *** Start the server
 const server = app.listen(
-	PORT,
-	console.log(`Server running on ${NODE_ENV} mode on port ${PORT}`.yellow.bold)
+	config.PORT,
+	console.log(
+		`Server running on ${config.NODE_ENV} mode on port ${config.PORT}`.yellow
+			.bold
+	)
 );
 
 // Handle unhandle promise rejections

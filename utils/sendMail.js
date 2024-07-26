@@ -1,21 +1,21 @@
 const nodemailer = require('nodemailer');
-const smtpConfig = require('../config/smtpConfig');
+const config = require('../config/index');
 
 const sendMail = async (options) => {
 	// Create transport
 	const transporter = nodemailer.createTransport({
-		host: smtpConfig.SMTP_HOST,
-		port: smtpConfig.SMTP_PORT,
+		host: config.SMTP.SMTP_HOST,
+		port: config.SMTP.SMTP_PORT,
 		secure: false, // Use `true` for port 465, `false` for all other ports
 		auth: {
-			user: smtpConfig.SMTP_EMAIL,
-			pass: smtpConfig.SMTP_PASSWORD,
+			user: config.SMTP.SMTP_EMAIL,
+			pass: config.SMTP.SMTP_PASSWORD,
 		},
 	});
 
 	// send mail with defined transport object
 	const mailBodyOptions = {
-		from: `"${smtpConfig.FROM_NAME}" <${smtpConfig.FROM_EMAIL}>`, // sender address
+		from: `"${config.SMTP.FROM_NAME}" <${config.SMTP.FROM_EMAIL}>`, // sender address
 		to: options.email, // list of receivers
 		subject: options.subject, // Subject line
 		text: options.message, // plain text body

@@ -67,6 +67,7 @@ You can use the flag `-d` too.
 33. Reset password Feature
 34. Update User Details
 35. Users (Admin) CRUD Feature
+36. Parameterized environment variables
 
 # NPM Packages
 

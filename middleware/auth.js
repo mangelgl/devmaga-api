@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
+const config = require('../config/index');
 
 const protect = asyncHandler(async (req, res, next) => {
 	let token;
@@ -16,13 +17,14 @@ const protect = asyncHandler(async (req, res, next) => {
 	//     token = req.cookies.token;
 	// }
 
+	// Authorization is not set
 	if (!token) {
 		return next(new ErrorResponse(401, 'Unauthorized to access this route'));
 	}
 
 	try {
 		// Verify token
-		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		const decoded = jwt.verify(token, config.JWT.JWT_SECRET);
 
 		req.user = await User.findById(decoded.id);
 

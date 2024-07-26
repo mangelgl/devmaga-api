@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+const config = require('../config/index');
 
 // * HELPER: Get token from model, create cookie and send response
 const sendTokenResponse = function (user, statusCode, res) {
@@ -8,7 +9,7 @@ const sendTokenResponse = function (user, statusCode, res) {
 	// Cookie options
 	const options = {
 		expires: new Date(
-			Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+			Date.now() + config.JWT.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
 		),
 		httpOnly: true, // can not be read from client side scripts
 	};
