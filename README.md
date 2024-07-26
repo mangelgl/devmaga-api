@@ -66,6 +66,7 @@ You can use the flag `-d` too.
 32. Bootcamp & Courses Ownership
 33. Reset password Feature
 34. Update User Details
+35. Users (Admin) CRUD Feature
 
 # NPM Packages
 
