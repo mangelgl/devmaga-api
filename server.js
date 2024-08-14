@@ -9,6 +9,8 @@ const morgan = require('morgan');
 const fileupload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const xss = require('xss-clean');
 
 const errorHandler = require('./middleware/errorHandler');
 const config = require('./config/index');
@@ -36,6 +38,8 @@ app.use(fileupload()); // to upload files
 app.use(express.static(path.join(__dirname, 'public'))); // to set public folder
 app.use(cookieParser()); // to parse cookies
 app.use(mongoSanitize()); // To sanitize data and prevent nosql injections
+app.use(helmet()); // Set security headers
+app.use(xss()); // Prevent xss attacks (cross-side scripting)
 
 // * Mount routes
 app.use('/api/v1/bootcamps', bootcamps); // Link the '/api/v1/bootcamps' URL with the 'routes/bootcamps.js' routes file

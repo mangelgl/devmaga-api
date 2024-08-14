@@ -73,6 +73,7 @@ You can use the flag `-d` too.
 37. Review Model & Controller
 38. Logout to Clear Token Cookie
 39. Prevent NoSQL Injection & Sanitize Data
+40. XSS Protection & Security Headers
 
 ## NPM Packages
 
@@ -89,6 +90,8 @@ You can use the flag `-d` too.
 - cookie-parser - <https://www.npmjs.com/package/cookie-parser>
 - nodemailer - <https://www.npmjs.com/package/nodemailer>
 - express-mongo-sanitize - <https://www.npmjs.com/package/express-mongo-sanitize>
+- helmet - <https://helmetjs.github.io/>
+- xss-clean - <https://www.npmjs.com/package/xss-clean>
 
 ## Information Links
 
