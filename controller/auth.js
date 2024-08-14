@@ -56,6 +56,24 @@ const login = asyncHandler(async (req, res, next) => {
 });
 
 /**
+ * * @desc Log user out / clear cookies
+ * @route GET /api/v1/auth/logout
+ * @access Private
+ * Does not works if auth.js middleware 18:20 is commented
+ */
+const logout = asyncHandler(async (req, res, next) => {
+	res.cookie('token', 'none', {
+		expires: new Date(Date.now() + 10 * 1000),
+		httpOnly: true,
+	});
+
+	res.status(200).json({
+		success: true,
+		data: {},
+	});
+});
+
+/**
  * * @desc Get current logged in user
  * @route POST /api/v1/auth/me
  * @access Private
@@ -188,6 +206,7 @@ const updatePassword = asyncHandler(async (req, res, next) => {
 module.exports = {
 	register,
 	login,
+	logout,
 	getUserLoggedIn,
 	forgotPassword,
 	resetPassword,

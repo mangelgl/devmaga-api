@@ -71,6 +71,7 @@ You can use the flag `-d` too.
 35. Users (Admin) CRUD Feature
 36. Parameterized environment variables
 37. Review Model & Controller
+38. Logout to Clear Token Cookie
 
 ## NPM Packages
 
