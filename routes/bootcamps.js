@@ -16,10 +16,12 @@ const advanceResults = require('../middleware/advancedResults');
 const { protect, authorize } = require('../middleware/auth');
 
 // Include other resources routes
-const courseRouter = require('./courses');
+const coursesRouter = require('./courses');
+const reviewsRouter = require('./reviews');
 
 // Re-route into other resource routers
-router.use('/:bootcampId/courses', courseRouter);
+router.use('/:bootcampId/courses', coursesRouter);
+router.use('/:bootcampId/reviews', reviewsRouter);
 
 // We're not going to use anymore the '/api/v1/bootcamps' prefix
 router

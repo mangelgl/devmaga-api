@@ -1,22 +1,24 @@
-# Install Dependencies
+# Endpoint API in NodeJS
 
-```
+## Install Dependencies
+
+```bash
 npm i
 ```
 
-# Run the Application
+## Run the Application
 
 Once dependencies have installed, run the following command:
 
-```
+```bash
 npm run dev
 ```
 
-# Seeders
+## Seeders
 
 To fill the database with data, run the following command:
 
-```
+```bash
 node seeder --import
 ```
 
@@ -24,13 +26,13 @@ You can use the flag `-i` too.
 
 To destroy the data, run the following command:
 
-```
+```bash
 node seeder --delete
 ```
 
 You can use the flag `-d` too.
 
-# Commit Content
+## Commit Content
 
 1. Initial Express setup
 2. Using Express Routes
@@ -68,27 +70,28 @@ You can use the flag `-d` too.
 34. Update User Details
 35. Users (Admin) CRUD Feature
 36. Parameterized environment variables
+37. Review Model & Controller
 
-# NPM Packages
+## NPM Packages
 
-- express - https://www.npmjs.com/package/express
-- dotenv - https://www.npmjs.com/package/dotenv
-- morgan - https://www.npmjs.com/package/morgan
-- mongoose - https://www.npmjs.com/package/mongoose
-- colors - https://www.npmjs.com/package/colors
-- slugify - https://www.npmjs.com/package/slugify
-- node-geocoder - https://www.npmjs.com/package/node-geocoder
-- fileupload - https://www.npmjs.com/package/express-fileupload
-- bcryptjs - https://www.npmjs.com/package/bcryptjs
-- jsonwebtoken - https://www.npmjs.com/package/jsonwebtoken
-- cookie-parser - https://www.npmjs.com/package/cookie-parser
-- nodemailer - https://www.npmjs.com/package/nodemailer
+- express - <https://www.npmjs.com/package/express>
+- dotenv - <https://www.npmjs.com/package/dotenv>
+- morgan - <https://www.npmjs.com/package/morgan>
+- mongoose - <https://www.npmjs.com/package/mongoose>
+- colors - <https://www.npmjs.com/package/colors>
+- slugify - <https://www.npmjs.com/package/slugify>
+- node-geocoder - <https://www.npmjs.com/package/node-geocoder>
+- fileupload - <https://www.npmjs.com/package/express-fileupload>
+- bcryptjs - <https://www.npmjs.com/package/bcryptjs>
+- jsonwebtoken - <https://www.npmjs.com/package/jsonwebtoken>
+- cookie-parser - <https://www.npmjs.com/package/cookie-parser>
+- nodemailer - <https://www.npmjs.com/package/nodemailer>
 
-# Information Links
+## Information Links
 
-- Async/Await Middlewares in Express - https://www.acuriousanimal.com/blog/20180315/express-async-middleware
-- Mongoose Radius Filtering - https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/
-- Mongoose Quantity Filtering - https://www.mongodb.com/docs/manual/reference/operator/query/gt/
-- Mongoose Select Fields - https://mongoosejs.com/docs/queries
-- JSON Web Token Debugger - https://jwt.io
-- Fake SMTP Server for Mails - https://mailtrap.io/
+- Async/Await Middlewares in Express - <https://www.acuriousanimal.com/blog/20180315/express-async-middleware>
+- Mongoose Radius Filtering - <https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/>
+- Mongoose Quantity Filtering - <https://www.mongodb.com/docs/manual/reference/operator/query/gt/>
+- Mongoose Select Fields - <https://mongoosejs.com/docs/queries>
+- JSON Web Token Debugger - <https://jwt.io>
+- Fake SMTP Server for Mails - <https://mailtrap.io/>
