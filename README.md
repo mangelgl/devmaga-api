@@ -72,6 +72,7 @@ You can use the flag `-d` too.
 36. Parameterized environment variables
 37. Review Model & Controller
 38. Logout to Clear Token Cookie
+39. Prevent NoSQL Injection & Sanitize Data
 
 ## NPM Packages
 
@@ -87,6 +88,7 @@ You can use the flag `-d` too.
 - jsonwebtoken - <https://www.npmjs.com/package/jsonwebtoken>
 - cookie-parser - <https://www.npmjs.com/package/cookie-parser>
 - nodemailer - <https://www.npmjs.com/package/nodemailer>
+- express-mongo-sanitize - <https://www.npmjs.com/package/express-mongo-sanitize>
 
 ## Information Links
 
@@ -96,3 +98,4 @@ You can use the flag `-d` too.
 - Mongoose Select Fields - <https://mongoosejs.com/docs/queries>
 - JSON Web Token Debugger - <https://jwt.io>
 - Fake SMTP Server for Mails - <https://mailtrap.io/>
+- Hacking NodeJS and MongoDB (NoSQL Injection) - <https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb>
