@@ -74,6 +74,7 @@ You can use the flag `-d` too.
 38. Logout to Clear Token Cookie
 39. Prevent NoSQL Injection & Sanitize Data
 40. XSS Protection & Security Headers
+41. Rate limiting, HPP & CORS
 
 ## NPM Packages
 
@@ -92,6 +93,9 @@ You can use the flag `-d` too.
 - express-mongo-sanitize - <https://www.npmjs.com/package/express-mongo-sanitize>
 - helmet - <https://helmetjs.github.io/>
 - xss-clean - <https://www.npmjs.com/package/xss-clean>
+- express-rate-limit - <https://www.npmjs.com/package/express-rate-limit>
+- hpp - <https://www.npmjs.com/package/hpp>
+- cors - <https://www.npmjs.com/package/cors>
 
 ## Information Links
 
