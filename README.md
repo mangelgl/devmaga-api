@@ -1,5 +1,11 @@
 # Endpoint API in NodeJS
 
+## Usage
+
+- Rename the file `env.template` to `.env` and change environment variables.
+- [Install dependencies](#install-dependencies)
+- [Run the Application](#run-the-application)
+
 ## Install Dependencies
 
 ```bash
