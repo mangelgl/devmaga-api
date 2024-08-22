@@ -1,5 +1,9 @@
 # Endpoint API in NodeJS
 
+## Website Documentation
+- <https://mangelgl.github.io/devmaga-api/>
+- Postman: <https://documenter.getpostman.com/view/23289394/2sAXjDcuG7>
+
 ## Install Dependencies
 
 ```bash
