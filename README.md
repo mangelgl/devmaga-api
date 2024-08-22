@@ -75,6 +75,7 @@ You can use the flag `-d` too.
 39. Prevent NoSQL Injection & Sanitize Data
 40. XSS Protection & Security Headers
 41. Rate limiting, HPP & CORS
+42. Postman Documentation & Docgen
 
 ## NPM Packages
 
@@ -96,6 +97,7 @@ You can use the flag `-d` too.
 - express-rate-limit - <https://www.npmjs.com/package/express-rate-limit>
 - hpp - <https://www.npmjs.com/package/hpp>
 - cors - <https://www.npmjs.com/package/cors>
+- docgen - <https://github.com/thedevsaddam/docgen>
 
 ## Information Links
 
